@@ -1,9 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.init = exports.isLandscapeLeft = exports.isLandscapeRight = exports.isPortraitReversed = exports.isPortraitDefault = exports.isLandscape = exports.isPortrait = exports.getDeviceOrientation = void 0;
 let _deviceOrientation_cachedEvent;
 /**
  * @param {Boolean} exactAngle - If it is set to true, then return a number from 0 up to 360, which represents current angle (rounded), otherwise it only returns 0, 90, 180 or 270 depending on which is more close to the current device angle
  * @returns {Number} current angle of device, see exactAngle description for more details
  */
-export function getDeviceOrientation(event, exactAngle = false) {
+function getDeviceOrientation(event, exactAngle = false) {
     if (!event && !_deviceOrientation_cachedEvent) {
         return 0;
     }
@@ -45,50 +48,57 @@ export function getDeviceOrientation(event, exactAngle = false) {
     }
     return 0;
 }
+exports.getDeviceOrientation = getDeviceOrientation;
 /**
  * @returns {Boolean} Returns true if device is in portrait mode, false otherwise
  */
-export function isPortrait(event) {
+function isPortrait(event) {
     const orientation = getDeviceOrientation(event);
     return (orientation === 0 || orientation === 180);
 }
+exports.isPortrait = isPortrait;
 /**
  * @returns {Boolean} Returns true if device is in landscape (flipped to side) mode, false otherwise
  */
-export function isLandscape(event) {
+function isLandscape(event) {
     const orientation = getDeviceOrientation(event);
     return (orientation === 90 || orientation === 270);
 }
+exports.isLandscape = isLandscape;
 /**
  * @returns {Boolean} Returns true if device is in standard portrait mode, false otherwise
  */
-export function isPortraitDefault(event) {
+function isPortraitDefault(event) {
     return getDeviceOrientation(event) === 0;
 }
+exports.isPortraitDefault = isPortraitDefault;
 /**
  * @returns {Boolean} Returns true if device is in reverse portrait mode, false otherwise
  */
-export function isPortraitReversed(event) {
+function isPortraitReversed(event) {
     return getDeviceOrientation(event) === 180;
 }
+exports.isPortraitReversed = isPortraitReversed;
 /**
  * @returns {Boolean} Returns true if device is in landscape (flipped to right side) position, false otherwise
  */
-export function isLandscapeRight(event) {
+function isLandscapeRight(event) {
     return getDeviceOrientation(event) === 90;
 }
+exports.isLandscapeRight = isLandscapeRight;
 /**
  * @returns {Boolean} Returns true if device is in landscape (flipped to left side) position, false otherwise
  */
-export function isLandscapeLeft(event) {
+function isLandscapeLeft(event) {
     return getDeviceOrientation(event) === 270;
 }
+exports.isLandscapeLeft = isLandscapeLeft;
 /**
  * Sets `deviceorientation` listener for you, the last event will be cached, so you can call `getDeviceOrientation` without any parameter and the cached event will be used
  *
  * @param {Boolean} throwErrorIfNotSupported if sets to true, then it will throw an error if window.DeviceOrientationEvent is undefined
  */
-export function init(throwErrorIfNotSupported = false) {
+function init(throwErrorIfNotSupported = false) {
     if (window.DeviceOrientationEvent === undefined) {
         if (throwErrorIfNotSupported) {
             throw new Error('DeviceOrientationEvent is not supported in current browser');
@@ -99,7 +109,8 @@ export function init(throwErrorIfNotSupported = false) {
         _deviceOrientation_cachedEvent = event;
     }, true);
 }
-export default {
+exports.init = init;
+exports.default = {
     getDeviceOrientation,
     isPortrait,
     isLandscape,

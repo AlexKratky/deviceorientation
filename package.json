@@ -1,10 +1,12 @@
 {
-  "name": "deviceorientation",
+  "name": "deviceorientation-js",
   "version": "1.0.0",
   "description": "Obatin current horizontal angle of device. Determine landscape/portrait mode,",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "dev": "npx tsc -w"
   },
   "repository": {
     "type": "git",
@@ -20,9 +22,13 @@
     "portrait"
   ],
   "author": "Alex Kratky",
+  "type": "module",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AlexKratky/deviceorientation/issues"
   },
-  "homepage": "https://github.com/AlexKratky/deviceorientation#readme"
+  "homepage": "https://github.com/AlexKratky/deviceorientation#readme",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
 }

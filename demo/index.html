@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeviceOrientation Demo</title>
+    <script>
+        var exports = {}
+    </script>
+    <script src="deviceorientation.js"></script>
+</head>
+<body>
+    <pre id="output">
+
+    </pre>
+
+    <script>
+        let previousOrientation = null
+        const handleOrientation = (event) => {
+            const orientation = getDeviceOrientation(event)
+            if (previousOrientation && previousOrientation !== orientation) {
+                alert('orientation changed')
+            }
+            previousOrientation = orientation
+            document.querySelector('#output').innerHTML = JSON.stringify({
+                angle: orientation,
+                exactAngle: getDeviceOrientation(event, true),
+                isPortrait: isPortrait(event),
+                isLandscape: isLandscape(event),
+                isPortraitDefault: isPortraitDefault(event),
+                isPortraitReversed: isPortraitReversed(event),
+                isLandscapeRight: isLandscapeRight(event),
+                isLandscapeLeft: isLandscapeLeft(event),
+            }, null, 2);
+        }
+
+        window.addEventListener("deviceorientation", handleOrientation, true);
+    </script>
+</body>
+</html>
