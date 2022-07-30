@@ -11,6 +11,7 @@
     <script src="deviceorientation.js"></script>
 </head>
 <body>
+    Try to flip your device :)
     <pre id="output">
 
     </pre>
@@ -32,6 +33,7 @@
                 isPortraitReversed: isPortraitReversed(event),
                 isLandscapeRight: isLandscapeRight(event),
                 isLandscapeLeft: isLandscapeLeft(event),
+                previousOrientation,
             }, null, 2);
         }
 
